@@ -99,20 +99,6 @@ int main(void)
 ```
 
 ```c
-SparkMax_t motors[3];
-
-SparkMax_InitAll(motors, &hcan1, 3);
-SparkMax_FilterConfig(&hcan1, 0, CAN_RX_FIFO0, SPARKMAX_BASE_PERIODICSTATUS1_ID);
-
-// Inside CAN RX callback:
-SparkMax_ProcessStatus1(motors, 3, rx_header.ExtId, rx_data);
-
-// Inside main loop:
-SparkMax_SendHeartbeat(&motors[0]);   // should be called every 20ms
-SparkMax_SetDuty(&motors[0], 0.5f);   // %50 duty
-```
-
-```c
 #include "FreeRTOS.h"
 #include "task.h"
 #include "sparkmax.h"
